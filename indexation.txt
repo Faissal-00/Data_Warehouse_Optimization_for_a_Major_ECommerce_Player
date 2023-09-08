@@ -1,0 +1,16 @@
+The created indexes on the FactOrder, FactInventory, and DIMProductSupplier tables serve to optimize query performance in specific scenarios. For instance, they enable faster retrieval of orders by customer, product, shipping method, status, and date, improving efficiency in customer and order-related operations. Similarly, indexes on inventory-related columns enhance the speed of inventory queries, especially concerning unique inventory IDs, warehouse associations, and restock dates. Lastly, indexes on product and supplier IDs expedite searches involving product-supplier relationships, streamlining supplier and product-related tasks. These indexes collectively enhance database responsiveness and application performance.
+
+
+CREATE INDEX IX_FactOrder_CustomerID ON FactOrder (CustomerID);
+CREATE INDEX IX_FactOrder_ProductID ON FactOrder (ProductID);
+CREATE INDEX IX_FactOrder_ShippingMethodeID ON FactOrder (ShippingMethodID);
+CREATE INDEX IX_FactOrder_StatusID ON FactOrder (StatusID);
+CREATE INDEX IX_FactOrder_DimensionsID ON FactOrder (DimensionsID);
+CREATE INDEX IX_FactOrder_DateOrderID ON FactOrder (DateOrderID);
+
+CREATE INDEX IX_FactInventory_InventoryID ON FactInventory (InventoryID);
+CREATE INDEX IX_FactInventory_WarehouseID ON FactInventory (WarehouseID);
+CREATE INDEX IX_FactInventory_LastRestockID ON FactInventory (LastRestockDateID);
+
+CREATE INDEX IX_DIMProductSupplier_ProductID ON DIMProductSupplier (ProductID);
+CREATE INDEX IX_DIMProductSupplier_SupplierID ON DIMProductSupplier (SupplierID);

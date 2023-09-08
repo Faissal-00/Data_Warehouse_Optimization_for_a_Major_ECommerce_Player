@@ -1,0 +1,104 @@
+"
+ALTER TABLE DIMCustomer 
+ADD CONSTRAINT fk_DIMCustomer_DIMGender 
+FOREIGN KEY (GenderID)
+REFERENCES DIMGender(GenderID)
+ON DELETE CASCADE;
+
+ALTER TABLE DIMCustomer 
+ADD CONSTRAINT fk_DIMCustomer_DIMLocation 
+FOREIGN KEY (LocationID)
+REFERENCES DIMLocation(LocationID)
+ON DELETE CASCADE;
+
+ALTER TABLE FactOrder 
+ADD CONSTRAINT fk_FactOrder_DIMDateOrder 
+FOREIGN KEY (DateOrderID)
+REFERENCES DIMDateOrder(DateOrderID)
+ON DELETE CASCADE;
+
+ALTER TABLE FactOrder 
+ADD CONSTRAINT fk_FactOrder_DIMShippingMethod
+FOREIGN KEY (ShippingMethodID)
+REFERENCES DIMShippingMethod(ShippingMethodID)
+ON DELETE CASCADE;
+
+ALTER TABLE FactOrder 
+ADD CONSTRAINT fk_FactOrder_DIMStatus 
+FOREIGN KEY (StatusID)
+REFERENCES DIMStatus(StatusID)
+ON DELETE CASCADE;
+
+ALTER TABLE FactOrder 
+ADD CONSTRAINT fk_FactOrder_DIMCustomer
+FOREIGN KEY (CustomerID)
+REFERENCES DIMCustomer(CustomerID)
+ON DELETE CASCADE;
+
+ALTER TABLE FactOrder 
+ADD CONSTRAINT fk_FactOrder_DIMProduct
+FOREIGN KEY (ProductID)
+REFERENCES DIMProduct(ProductID)
+ON DELETE CASCADE;
+
+ALTER TABLE FactOrder 
+ADD CONSTRAINT fk_FactOrder_DIMDimensions
+FOREIGN KEY (DimensionsID)
+REFERENCES DIMDimensions(DimensionsID)
+ON DELETE CASCADE;
+
+ALTER TABLE DIMSubcategory 
+ADD CONSTRAINT fk_DIMSubcategory_DIMCategory 
+FOREIGN KEY (CategoryID)
+REFERENCES DIMCategory(CategoryID)
+ON DELETE CASCADE;
+
+ALTER TABLE DIMProduct
+ADD CONSTRAINT fk_DIMProduct_DIMSubcategory
+FOREIGN KEY (SubcategoryID)
+REFERENCES DIMSubcategory(SubcategoryID)
+ON DELETE CASCADE;
+
+ALTER TABLE DIMsupplier
+ADD CONSTRAINT fk_DIMsupplier_DIMCompany
+FOREIGN KEY (CompanyID)
+REFERENCES DIMCompany(CompanyID)
+ON DELETE CASCADE;
+
+ALTER TABLE DIMsupplier
+ADD CONSTRAINT fk_DIMsupplier_DIMLocationSupplier
+FOREIGN KEY (LocationSupplierID)
+REFERENCES DIMLocationSupplier(LocationSupplierID)
+ON DELETE CASCADE;
+
+ALTER TABLE DIMProductSupplier
+ADD CONSTRAINT fk_DIMProductSupplier_DIMProduct
+FOREIGN KEY (ProductID)
+REFERENCES DIMProduct(ProductID)
+ON DELETE CASCADE;
+
+ALTER TABLE DIMProductSupplier
+ADD CONSTRAINT fk_DIMProductSupplier_DIMsupplier
+FOREIGN KEY (SupplierID)
+REFERENCES DIMsupplier(SupplierID)
+ON DELETE CASCADE;
+
+
+ALTER TABLE FactInventory
+ADD CONSTRAINT fk_FactInventory_DIMLastRestockDate
+FOREIGN KEY (LastRestockDateID)
+REFERENCES DIMLastRestockDate(LastRestockDateID)
+ON DELETE CASCADE;
+
+ALTER TABLE FactInventory
+ADD CONSTRAINT fk_FactInventory_DIMWarehouse
+FOREIGN KEY (WarehouseID)
+REFERENCES DIMWarehouse(WarehouseID)
+ON DELETE CASCADE;
+
+ALTER TABLE DIMProduct
+ADD CONSTRAINT fk_DIMProduct_FactInventory
+FOREIGN KEY (InventoryID)
+REFERENCES FactInventory(InventoryID)
+ON DELETE CASCADE;
+"
